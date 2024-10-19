@@ -1,0 +1,1 @@
+let JWT_SECERET = "Akhilesh"

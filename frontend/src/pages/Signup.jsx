@@ -25,7 +25,7 @@ import logo from "../assets/logo.svg"
     e.preventDefault()
 
     try{
-      const res = await fetch("https://assignment-kwsp.vercel.app/?vercelToolbarCode=B1RYWhtuOthGv1U/api/v1/user/signup", {
+      const res = await fetch("http://localhost:3000/api/v1/user/signup", {
           method: "POST",
           body: JSON.stringify({
             username: formData.username,

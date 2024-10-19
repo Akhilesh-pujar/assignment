@@ -2,7 +2,8 @@
 const mongoose = require('mongoose');
 const dotenv = require("dotenv");
 dotenv.config();
-const mongoDB = 'mongodb+srv://akhileshspujar:IzMg0FR87nRiUQug@jobboarding.njf1j.mongodb.net/?retryWrites=true&w=majority&appName=JobBoarding'
+const mongoDB = process.env.MONGODB_URI;
+;
 
 mongoose.connect(mongoDB).then(() => console.log("connected to MongoDb successfully")).catch((err) => console.log(err));
 
@@ -14,26 +15,32 @@ const userSchema = new mongoose.Schema({
         unique: true,
         trim: true,
         lowercase: true,
-        minLength: 4,
-        maxLength: 30
+      
     },
-    password: {
-        type: String,
-        required: true,
-        minLength: 6
+    phone: {
+        type: Number,
+  
+       
     },
-    firstName: {
-        type: String,
-        required: true,
-        trim: true,
-        maxLength: 50
-    },
-    lastName: {
+    companyName: {
         type: String,
         required: true,
         trim: true,
-        maxLength: 50
+       
+    },
+    companyEmail: {
+        type: String,
+        required: true,
+        trim: true,
+       
+    },
+    employeeSize: {
+        type: Number,
+        required: true,
+       
+       
     }
+
 });
 
 const JobBoardDetails = new mongoose.Schema({
@@ -44,7 +51,7 @@ const JobBoardDetails = new mongoose.Schema({
         trim: true,
         lowercase: true,
         minLength: 3,
-        maxLength: 30,
+        maxLength: 100,
         
     },
     JobDesc: {
@@ -53,12 +60,13 @@ const JobBoardDetails = new mongoose.Schema({
         unique: true,
        
         lowercase: true,
-        minLength: 3,
-        maxLength: 30
+        minLength: 10,
+        maxLength: 200
     },
     JobExpLev:{
         type: Number,
-        required: true
+        required: true,
+        min:0
     },
     AddCandi:{
         type: String,
@@ -71,13 +79,9 @@ const JobBoardDetails = new mongoose.Schema({
 
     },
     EndDate:{
-        type: String,
+        type: Date,
         required: true,
-        unique: true,
-        trim: true,
-        lowercase: true,
-        minLength: 3,
-        maxLength: 30,
+     
     }
 });
 

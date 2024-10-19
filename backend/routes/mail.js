@@ -1,6 +1,8 @@
 
 const nodemailer = require('nodemailer');
-
+const express = require('express');
+const { authMiddleware } = require("../middleware");
+const router = express.Router();
 
 
 const transporter = nodemailer.createTransport({
@@ -11,7 +13,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-app.post('/send-email', (req, res) => {
+router.post('/send-email', (req, res) => {
     const { candidates, jobTitle, jobDescription } = req.body;
 
     const mailOptions = {
